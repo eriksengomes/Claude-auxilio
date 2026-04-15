@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eriksen | Front-end Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0d0d0f;
+      --bg2:#131317;
+      --bg3:#1a1a20;
+      --accent:#7c6dfa;
+      --accent2:#a78bfa;
+      --text:#e8e6f0;
+      --muted:#8b8a9a;
+      --border:#2a2a35;
+      --green:#4ade80;
+      --mono:'Space Mono',monospace;
+      --sans:'DM Sans',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:900px;margin:0 auto;padding:0 1.5rem 4rem}
+
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-bottom:1px solid var(--border);margin-bottom:4rem}
+    .logo{font-family:var(--mono);font-size:14px;color:var(--accent)}
+    .nav-links{display:flex;gap:2rem}
+    .nav-links a{font-size:13px;color:var(--muted);transition:.2s}
+    .nav-links a:hover{color:var(--text)}
+
+    .hero{margin-bottom:5rem}
+    .status{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--muted);margin-bottom:2rem}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;flex-shrink:0}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:300;line-height:1.15;letter-spacing:-1px;margin-bottom:1.5rem}
+    h1 span{color:var(--accent2)}
+    .subtitle{font-size:1.05rem;color:var(--muted);max-width:500px;line-height:1.7;margin-bottom:2.5rem}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-primary{background:var(--accent);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-family:var(--sans);cursor:pointer;font-weight:500;transition:.2s;display:inline-block}
+    .btn-primary:hover{background:var(--accent2);color:#fff}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);padding:12px 28px;border-radius:8px;font-size:14px;font-family:var(--sans);cursor:pointer;transition:.2s;display:inline-block}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+    .section-label{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem}
+
+    .skills-section{margin-bottom:4rem}
+    .skills-grid{display:flex;flex-wrap:wrap;gap:.6rem}
+    .skill-tag{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 16px;font-size:13px;color:var(--text);font-family:var(--mono)}
+    .skill-tag.active{border-color:var(--accent);color:var(--accent2);background:rgba(124,109,250,.08)}
+
+    .projects-section{margin-bottom:4rem}
+    .sec-title{font-size:1.5rem;font-weight:400;margin-bottom:.5rem;letter-spacing:-.5px}
+    .sec-sub{color:var(--muted);font-size:.9rem;margin-bottom:2rem}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+    .project-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:.25s;position:relative;overflow:hidden;display:block}
+    .project-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+    .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:.25s}
+    .project-card:hover::before{opacity:1}
+    .p-tag{font-size:11px;font-family:var(--mono);color:var(--accent);margin-bottom:.75rem}
+    .p-title{font-size:1rem;font-weight:500;margin-bottom:.5rem}
+    .p-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+    .p-stack{display:flex;flex-wrap:wrap;gap:.4rem}
+    .p-stack span{font-size:11px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 9px;color:var(--muted);font-family:var(--mono)}
+    .p-link{font-size:12px;color:var(--accent);font-family:var(--mono);margin-top:1rem;display:inline-block}
+
+    .about-section{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:4rem;display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
+    .avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-family:var(--mono);color:#fff;flex-shrink:0;font-weight:700}
+    .about-text h3{font-size:1.1rem;font-weight:500;margin-bottom:.5rem}
+    .about-text p{font-size:.9rem;color:var(--muted);line-height:1.7}
+
+    .contact-section{text-align:center;padding:3rem;background:var(--bg2);border:1px solid var(--border);border-radius:16px}
+    .contact-section h2{font-size:1.8rem;font-weight:300;margin-bottom:.75rem;letter-spacing:-.5px}
+    .contact-section p{color:var(--muted);margin-bottom:2rem;font-size:.95rem}
+    .social-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+    .social-link{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 20px;font-size:13px;color:var(--text);transition:.2s;font-family:var(--mono);display:inline-block}
+    .social-link:hover{border-color:var(--accent);color:var(--accent)}
+
+    footer{text-align:center;padding:2rem 0;font-size:12px;color:var(--muted);font-family:var(--mono);border-top:1px solid var(--border);margin-top:4rem}
+
+    @media(max-width:600px){
+      nav{flex-direction:column;gap:1rem;text-align:center}
+      .nav-links{gap:1.2rem}
+      h1{font-size:2rem}
+      .about-section{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav>
+      <div class="logo">eriksen.dev</div>
+      <div class="nav-links">
+        <a href="#inicio">início</a>
+        <a href="#projetos">projetos</a>
+        <a href="#sobre">sobre</a>
+        <a href="#contato">contato</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+      <div class="status"><span class="dot"></span>disponível para oportunidades</div>
+      <h1>Olá, eu sou<br><span>Eriksen</span><br>Front-end Developer</h1>
+      <p class="subtitle">Aprendiz de programação apaixonado por criar interfaces modernas e experiências digitais marcantes com HTML, CSS e JavaScript.</p>
+      <div class="hero-btns">
+        <a href="#projetos" class="btn-primary">Ver meus projetos →</a>
+        <a href="#contato" class="btn-outline">Entrar em contato</a>
+      </div>
+    </section>
+
+    <section class="skills-section">
+      <div class="section-label">// stack técnica</div>
+      <div class="skills-grid">
+        <div class="skill-tag active">HTML5</div>
+        <div class="skill-tag active">CSS3</div>
+        <div class="skill-tag active">JavaScript</div>
+        <div class="skill-tag">Git &amp; GitHub</div>
+        <div class="skill-tag">Flexbox</div>
+        <div class="skill-tag">CSS Grid</div>
+        <div class="skill-tag">Responsivo</div>
+        <div class="skill-tag">VS Code</div>
+      </div>
+    </section>
+
+    <section class="projects-section" id="projetos">
+      <div class="section-label">// projetos</div>
+      <h2 class="sec-title">O que estou construindo</h2>
+      <p class="sec-sub">Projetos desenvolvidos durante minha jornada de aprendizado.</p>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="p-tag">01 — projeto</div>
+          <div class="p-title">Calculadora Web</div>
+          <div class="p-desc">Calculadora funcional com operações básicas, construída com HTML, CSS e JavaScript puro.</div>
+          <div class="p-stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          <!-- Substitua o # pelo link do seu projeto no GitHub -->
+          <a href="#" class="p-link">ver projeto →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="p-tag">02 — projeto</div>
+          <div class="p-title">Página de Receitas</div>
+          <div class="p-desc">Site responsivo com layout em grid, navegação e cards interativos de receitas culinárias.</div>
+          <div class="p-stack"><span>HTML</span><span>CSS Grid</span></div>
+          <a href="#" class="p-link">ver projeto →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="p-tag">03 — projeto</div>
+          <div class="p-title">To-Do List</div>
+          <div class="p-desc">Lista de tarefas com adição, remoção e marcação de itens, com persistência no localStorage.</div>
+          <div class="p-stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          <a href="#" class="p-link">ver projeto →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="about-section" id="sobre">
+      <div class="avatar">E</div>
+      <div class="about-text">
+        <h3>Sobre mim</h3>
+        <p>Estudante de desenvolvimento front-end, aprendendo todos os dias e construindo projetos para consolidar o conhecimento. Acredito que a prática constante é o caminho para dominar a programação.</p>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contato">
+      <h2>Vamos conversar?</h2>
+      <p>Aberto a projetos, colaborações e novas oportunidades de aprendizado.</p>
+      <div class="social-links">
+        <!-- Substitua os # pelos seus links reais -->
+        <a href="https://github.com/seu-usuario" class="social-link" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/seu-usuario" class="social-link" target="_blank">LinkedIn</a>
+        <a href="mailto:seu-email@gmail.com" class="social-link">Email</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>feito por Eriksen &mdash; desenvolvido com auxílio de Claude (Anthropic) &mdash; 2025</p>
+    </footer>
+
+  </div>
+</body>
+</html>
